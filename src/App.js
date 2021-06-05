@@ -14,7 +14,6 @@ const App = () => {
   const [OV, setOV] = useState(undefined);
 
   useEffect(() => {
-    setOV(new OpenVidu());
     window.addEventListener('beforeunload', leaveSession);
   }, []);
 
@@ -26,6 +25,8 @@ const App = () => {
     // Το update του state δεν γινεται αμεσα. Αρα θα πρεπει να
     // γραψω κωδικα μεσα σε callback. Για τον σκοπο αυτο θα
     // πρεπει να χρησιμοποιησω το useEffect hook.
+    let OV = new OpenVidu();
+    setOV(OV);
     setSession(OV.initSession());
   };
 
@@ -34,11 +35,11 @@ const App = () => {
     // ελεγχο πριν εκτελεσω τις καταλληλες συναρτησεις.
     if (session === undefined)
       return;
-    
+
     // On every new Stream received...
     session.on('streamCreated', (event) => {
       let subscriber = session.subscribe(event.stream, undefined);
-      // Update the state with the new subscribers
+      // Update the state with the new subscriber
       setSubscriber(subscriber);
     });
 
@@ -70,9 +71,9 @@ const App = () => {
 
   return (
     <React.Fragment>
-      {!publisher && <Form joinSession={joinSession} sessionId={sessionId}
+      {!session && <Form joinSession={joinSession} sessionId={sessionId}
       sessionIdChangeHandler={sessionIdChangeHandler}/>}
-      {publisher && <Session sessionId={sessionId} leaveSession={leaveSession}/>}
+      {session && <Session sessionId={sessionId} leaveSession={leaveSession}/>}
     </React.Fragment>
 
   );

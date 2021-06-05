@@ -1,5 +1,5 @@
 Εκτελω
-npx create-react-app frontend
+npx create-react-app openvidu-react-hello-world
 αρχικα για την δημιουργια του react project.
 
 Μετα για να κανω εγκατασταση του openvidu library, μπαινω στον φακελο
