@@ -1,0 +1,11 @@
+.publisher {
+	float: left;
+	margin: 10px;
+    width: 40%;
+}
+
+.subscriber {
+	float: right;
+    margin: 10px;
+    width: 40%;
+}

@@ -1,17 +1,18 @@
-Εκτελω
+This project was created by running
 npx create-react-app openvidu-react-hello-world
-αρχικα για την δημιουργια του react project.
 
-Μετα για να κανω εγκατασταση του openvidu library, μπαινω στον φακελο
-frontend που δημιουργηθηκε και εκτελω
+Dependencies were installed by running inside openvidu-react-hello-world folder
 npm install openvidu-react --save
 npm install axios --save
 
-Βαζω το --save ωστε να αποθηκευθει τα depedencies του openvidu-react στο αρχειο package.json ωστε την επομενη φορα να εκτελω μονο npm install
+--save argument saves the dependencies in package.json file. Now, after deleting node_modules folder, we only
+need to run npm install.
 
-Μου βγαζει καποια σφαλματα ομως, κυριως warnings. Θα τα αγνοησω και ελπιζω να μην εχω προβλημα.
+Several warnings appeared. We will ignore them for now.
 
-Εκτελω
+To run this project, open a terminal and run
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.18.0
 
-Μεσα στον φακελο frontend εκτελω npm start
+Then, run 
+npm start
+inside openvidu-react-hello-world folder.

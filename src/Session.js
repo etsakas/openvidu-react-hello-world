@@ -1,4 +1,6 @@
+import styles from './Session.module.css';
 import React from 'react';
+import OpenViduVideo from './OpenViduVideo';
 
 const Session = (props) => {
 
@@ -7,13 +9,13 @@ const Session = (props) => {
         <h1>{props.sessionId}</h1>
         <input type="button" onClick={props.leaveSession} value="LEAVE"/>
         <div>
-            <div id="publisher">
+            <div className={styles.publisher}>
                 <h3>YOU</h3>
-                <video autoPlay={true}/>
+                <OpenViduVideo streamManager={props.publisher}/>
             </div>
-            <div id="subscriber">
+            <div className={styles.subscriber}>
                 <h3>OTHERS</h3>
-                <video autoPlay={true} />
+                <OpenViduVideo streamManager={props.subscriber}/>
             </div>
         </div>
     </React.Fragment>

@@ -22,17 +22,15 @@ const App = () => {
   };
 
   const joinSession = () => {
-    // Το update του state δεν γινεται αμεσα. Αρα θα πρεπει να
-    // γραψω κωδικα μεσα σε callback. Για τον σκοπο αυτο θα
-    // πρεπει να χρησιμοποιησω το useEffect hook.
+    // state won't be updated immediately. We need a callback for
+    // then the state is updated. We use useEffect below for this reason
     let OV = new OpenVidu();
     setOV(OV);
     setSession(OV.initSession());
   };
 
   useEffect(() => {
-    // Καλειται ομως και στο πρωτο render. Αρα θα πρεπει να κανω
-    // ελεγχο πριν εκτελεσω τις καταλληλες συναρτησεις.
+    // useEffect is executed upon first render when session is undefined.
     if (session === undefined)
       return;
 
@@ -73,7 +71,8 @@ const App = () => {
     <React.Fragment>
       {!session && <Form joinSession={joinSession} sessionId={sessionId}
       sessionIdChangeHandler={sessionIdChangeHandler}/>}
-      {session && <Session sessionId={sessionId} leaveSession={leaveSession}/>}
+      {session && <Session sessionId={sessionId} leaveSession={leaveSession}
+      publisher={publisher} subscriber={subscriber}/>}
     </React.Fragment>
 
   );
