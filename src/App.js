@@ -1,4 +1,3 @@
-import './App.module.css';
 import Form from './Form';
 import Session from './Session';
 import { OpenVidu } from 'openvidu-browser';
