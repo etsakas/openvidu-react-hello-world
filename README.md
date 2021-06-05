@@ -1,3 +1,7 @@
+Based on:
+https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-hello-world
+https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-react
+
 This project was created by running
 npx create-react-app openvidu-react-hello-world
 
@@ -16,3 +20,11 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 Then, run 
 npm start
 inside openvidu-react-hello-world folder.
+
+// Issues
+1) When two users are connected to the same session, if one leaves by closing the tab,
+the other user sees a frozen screen that goes away after some seconds. On the other
+hand, if one leaves by clicking the "leave" button, the other user's screen gets
+updated immediately.
+
+2) React Hook useEffect has a missing dependency: 'leaveSession'.

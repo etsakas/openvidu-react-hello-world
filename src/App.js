@@ -12,8 +12,24 @@ const App = () => {
   const [publisher, setPublisher] = useState(undefined);
   const [OV, setOV] = useState(undefined);
 
+  const leaveSession = () => {
+    if (session)
+        session.disconnect();
+
+    setOV(undefined);
+    setSession(undefined);
+    setSessionId('SessionA');
+    setSubscriber(undefined);
+    setPublisher(undefined);
+  };
+
   useEffect(() => {
     window.addEventListener('beforeunload', leaveSession);
+
+    // returned function will be called on component unmount 
+    return () => {
+      window.removeEventListener('beforeunload', leaveSession);
+    }
   }, []);
 
   const sessionIdChangeHandler = (event) => {
@@ -22,7 +38,7 @@ const App = () => {
 
   const joinSession = () => {
     // state won't be updated immediately. We need a callback for
-    // then the state is updated. We use useEffect below for this reason
+    // when the state is updated. We use useEffect below for this reason.
     let OV = new OpenVidu();
     setOV(OV);
     setSession(OV.initSession());
@@ -30,6 +46,7 @@ const App = () => {
 
   useEffect(() => {
     // useEffect is executed upon first render when session is undefined.
+    // We avoid this execution.
     if (session === undefined)
       return;
 
@@ -54,17 +71,6 @@ const App = () => {
     });
 
   }, [session, OV, sessionId]);
-
-  const leaveSession = () => {
-    if (session)
-        session.disconnect();
-
-    setOV(undefined);
-    setSession(undefined);
-    setSessionId('SessionA');
-    setSubscriber(undefined);
-    setPublisher(undefined);
-  };
 
   return (
     <React.Fragment>
