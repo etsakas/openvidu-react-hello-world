@@ -1,7 +1,7 @@
 import Form from './Form';
 import Session from './Session';
 import { OpenVidu } from 'openvidu-browser';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   const [publisher, setPublisher] = useState(undefined);
   const [OV, setOV] = useState(undefined);
 
-  const leaveSession = () => {
+  const leaveSession = useCallback(() => {
     if (session)
         session.disconnect();
 
@@ -21,7 +21,7 @@ const App = () => {
     setSessionId('SessionA');
     setSubscriber(undefined);
     setPublisher(undefined);
-  };
+  }, [session]);
 
   useEffect(() => {
     window.addEventListener('beforeunload', leaveSession);
@@ -30,7 +30,7 @@ const App = () => {
     return () => {
       window.removeEventListener('beforeunload', leaveSession);
     }
-  }, []);
+  }, [leaveSession]);
 
   const sessionIdChangeHandler = (event) => {
     setSessionId(event.target.value);

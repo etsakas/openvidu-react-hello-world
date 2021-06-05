@@ -25,5 +25,8 @@ inside openvidu-react-hello-world folder.
 the other user sees a frozen screen that goes away after some seconds. On the other
 hand, if one leaves by clicking the "leave" button, the other user's screen gets
 updated immediately.
+-Seems to work fine now.
 
 2) React Hook useEffect has a missing dependency: 'leaveSession'.
+-Solved by wrapping leaveSession function with useCallback hooks.
+Is there a better solution?
