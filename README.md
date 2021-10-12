@@ -1,32 +1,16 @@
-Based on:
-https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-hello-world  
-https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-react
+## OpenVidu 'Hello World' in React ##
 
-This project was created by running  
-npx create-react-app openvidu-react-hello-world
+Based on:  
+- https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-hello-world  
+- https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-react
 
-Dependencies were installed by running inside openvidu-react-hello-world folder  
-npm install openvidu-react --save  
-npm install axios --save
+Created with ```npx create-react-app```.  
 
---save argument saves the dependencies in package.json file. Now, after deleting node_modules folder, we only need to run npm install.
+The following dependencies were added:  
+- npm install openvidu-react --save  
+- npm install axios --save
 
-Several warnings appeared. We will ignore them for now.
-
-To run this project, open a terminal and run  
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.18.0
-
-Then, run  
-npm start  
-inside openvidu-react-hello-world folder.
-
-// Issues
-1) When two users are connected to the same session, if one leaves by closing the tab,
-the other user sees a frozen screen that goes away after some seconds. On the other
-hand, if one leaves by clicking the "leave" button, the other user's screen gets
-updated immediately.
--Seems to work fine now.
-
-2) React Hook useEffect has a missing dependency: 'leaveSession'.
--Solved by wrapping leaveSession function with useCallback hooks.
-Is there a better solution?
+---
+1. Run ```docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.18.0```
+2. Run ```npm install``` and ```npm start```
+3. Visit ```http://localhost:3000/```
